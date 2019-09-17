@@ -92,5 +92,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-    
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Toast.makeText(MainActivity.this, "OnActivityResult is called.",Toast.LENGTH_SHORT).show();
+        if(requestCode == CAMERA_IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            //for get the picture or retrieves a map of extended data from the intent
+            Bundle bundle = data.getExtras();
+            bitmap = (Bitmap) bundle.get("data");
+            imgPhoto.setImageBitmap(bitmap);
+
+        }
+    }
 }
