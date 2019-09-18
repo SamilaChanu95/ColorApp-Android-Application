@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Bitmap bitmap;
 
+    private Colorful colorful;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnTakePicture.setOnClickListener(MainActivity.this);
         btnSavePicture.setOnClickListener(MainActivity.this);
+
+        ColorizationHandler colorizationHandler = new ColorizationHandler();
+
+        redColorSeekBar.setOnSeekBarChangeListener(colorizationHandler);
+        greenColorSeekBar.setOnSeekBarChangeListener(colorizationHandler);
+        blueColorSeekBar.setOnSeekBarChangeListener(colorizationHandler);
     }
 
     @Override
@@ -103,7 +111,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //for get the picture or retrieves a map of extended data from the intent
             Bundle bundle = data.getExtras();
             bitmap = (Bitmap) bundle.get("data");
+
+            //pass the value for the picture bitmap
+            colorful = new Colorful(bitmap, 0.0f, 0.0f, 0.0f);
+
             imgPhoto.setImageBitmap(bitmap);
+
+        }
+    }
+
+    private class ColorizationHandler implements SeekBar.OnSeekBarChangeListener {
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        //That method using when user starting interaction with the seekbar
+
+
+        }
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            //That method using when user change the progress
+
+            if(fromUser) {
+
+                if(seekBar == redColorSeekBar) {
+
+                    colorful.setRedColorValue(progress / 100);
+                    redColorSeekBar.setProgress( (int) (100 * (colorful.getRedColorValue())));
+                    txtRedColorValue.setText(colorful.getRedColorValue() + "");
+
+                } else if (seekBar == greenColorSeekBar) {
+
+                    colorful.setGreenColorValue(progress / 100);
+                    greenColorSeekBar.setProgress( (int) (100 * (colorful.getGreenColorValue())));
+                    txtGreenColorValue.setText(colorful.getGreenColorValue() + "");
+
+                } else if (seekBar == blueColorSeekBar) {
+
+                    colorful.setBlueColorValue(progress / 100);
+                    blueColorSeekBar.setProgress( (int) (100 * (colorful.getBlueColorValue())));
+                    txtBlueColorValue.setText(colorful.getBlueColorValue() + "");
+
+                }
+
+                bitmap = colorful.returnTheColorizedBitmap();
+                imgPhoto.setImageBitmap(bitmap);
+
+            }
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+        //That method using when user stop the interaction with the seekbar
+
+
 
         }
     }
