@@ -64,7 +64,7 @@ public class Colorful {
 
     }
 
-    public Bitmap returnTheColorizedBitmap() {
+    public Bitmap ColorizationHandler() {
 
         int bitmapWidth = bitmap.getWidth();
         int bitmapHeight = bitmap.getHeight();
@@ -81,7 +81,7 @@ public class Colorful {
 
                 pixelColor = Color.argb(Color.alpha(pixelColor),(int)redColorValue * Color.red(pixelColor), (int)greenColorValue * Color.green(pixelColor), (int)blueColorValue * Color.blue(pixelColor));
 
-                localBitmap.setPixel(bitmapWidth,bitmapHeight,pixelColor);
+                localBitmap.setPixel(row,column,pixelColor);
             }
 
         }
