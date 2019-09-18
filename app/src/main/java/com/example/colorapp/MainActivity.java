@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.jar.Manifest;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -97,6 +96,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         } else if(view.getId() == R.id.btnSavePicture) {
 
+            int permissionCheck = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                //these means user allow to access the application to external storage
+
+                try {
+
+                    SaveFile.saveFile(MainActivity.this, bitmap);
+                    Toast.makeText(MainActivity.this, "The Image is successfully saved to External Storage.",Toast.LENGTH_SHORT).show();
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+
+                }
+
+            } else {
+
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2000);
+
+            }
 
         }
     }
