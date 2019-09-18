@@ -3,7 +3,7 @@
     package="com.example.colorapp">
 
     <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/><!--read and write both permission covered by this-->
 
     <application
         android:allowBackup="true"
