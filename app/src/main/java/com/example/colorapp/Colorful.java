@@ -63,5 +63,29 @@ public class Colorful {
         return  blueColorValue;
 
     }
-    
+
+    public Bitmap returnTheColorizedBitmap() {
+
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+
+        Bitmap.Config bitmapConfig = bitmap.getConfig();
+
+        Bitmap localBitmap = Bitmap.createBitmap(bitmapWidth,bitmapHeight,bitmapConfig);
+
+        for (int row = 0; row < bitmapWidth; row++) {
+
+            for (int column = 0; column < bitmapHeight; column++) {
+
+                int pixelColor = bitmap.getPixel(row, column);
+
+                pixelColor = Color.argb(Color.alpha(pixelColor),(int)redColorValue * Color.red(pixelColor), (int)greenColorValue * Color.green(pixelColor), (int)blueColorValue * Color.blue(pixelColor));
+
+                localBitmap.setPixel(bitmapWidth,bitmapHeight,pixelColor);
+            }
+
+        }
+
+        return localBitmap;
+    }
 }
