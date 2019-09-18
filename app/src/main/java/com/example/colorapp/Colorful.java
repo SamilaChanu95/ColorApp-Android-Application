@@ -64,7 +64,7 @@ public class Colorful {
 
     }
 
-    public Bitmap ColorizationHandler() {
+    public Bitmap returnTheColorizedBitmap() {
 
         int bitmapWidth = bitmap.getWidth();
         int bitmapHeight = bitmap.getHeight();
