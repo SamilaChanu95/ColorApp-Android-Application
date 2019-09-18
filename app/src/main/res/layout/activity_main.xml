@@ -43,8 +43,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
+        android:max="100"
+        android:progress="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/imgPhoto" /><!--android:thumb="@drawable/thumb"-->
 
     <SeekBar
         android:id="@+id/greenColorSeekBar"
@@ -52,8 +54,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/redColorSeekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/redColorSeekBar" /><!-- set 100 maximum value for the progress -->
 
     <SeekBar
         android:id="@+id/blueColorSeekBar"
@@ -61,6 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greenColorSeekBar" />
 
