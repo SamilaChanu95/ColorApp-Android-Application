@@ -62,6 +62,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSavePicture.setOnClickListener(MainActivity.this);
         btnShare.setOnClickListener(MainActivity.this);
 
+        btnSavePicture.setVisibility(View.INVISIBLE);
+        redColorSeekBar.setVisibility(View.INVISIBLE);
+        greenColorSeekBar.setVisibility(View.INVISIBLE);
+        blueColorSeekBar.setVisibility(View.INVISIBLE);
+        btnShare.setVisibility(View.INVISIBLE);
+        txtRedColorValue.setVisibility(View.INVISIBLE);
+        txtGreenColorValue.setVisibility(View.INVISIBLE);
+        txtBlueColorValue.setVisibility(View.INVISIBLE);
+
+
         ColorizationHandler colorizationHandler = new ColorizationHandler();
 
         redColorSeekBar.setOnSeekBarChangeListener(colorizationHandler);
@@ -151,6 +161,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Toast.makeText(MainActivity.this, "OnActivityResult is called.",Toast.LENGTH_SHORT).show();
         if(requestCode == CAMERA_IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            btnSavePicture.setVisibility(View.VISIBLE);
+            redColorSeekBar.setVisibility(View.VISIBLE);
+            greenColorSeekBar.setVisibility(View.VISIBLE);
+            blueColorSeekBar.setVisibility(View.VISIBLE);
+            btnShare.setVisibility(View.VISIBLE);
+            txtRedColorValue.setVisibility(View.VISIBLE);
+            txtGreenColorValue.setVisibility(View.VISIBLE);
+            txtBlueColorValue.setVisibility(View.VISIBLE);
+
 
             //for get the picture or retrieves a map of extended data from the intent
             Bundle bundle = data.getExtras();
