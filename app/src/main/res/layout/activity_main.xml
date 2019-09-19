@@ -45,6 +45,7 @@
         android:layout_marginTop="40dp"
         android:max="100"
         android:progress="0"
+        android:thumbTint="#990000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPhoto" /><!--android:thumb="@drawable/thumb"-->
 
@@ -56,6 +57,7 @@
         android:layout_marginTop="20dp"
         android:max="100"
         android:progress="0"
+        android:thumbTint="#009900"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/redColorSeekBar" /><!-- set 100 maximum value for the progress -->
 
@@ -67,6 +69,7 @@
         android:layout_marginTop="20dp"
         android:max="100"
         android:progress="0"
+        android:thumbTint="#000099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greenColorSeekBar" />
 
