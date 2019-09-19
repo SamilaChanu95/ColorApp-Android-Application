@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -19,10 +20,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnTakePicture;
     private Button btnSavePicture;
+    private Button btnShare;
     private ImageView imgPhoto;
     private SeekBar redColorSeekBar;
     private SeekBar greenColorSeekBar;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
         btnSavePicture = (Button) findViewById(R.id.btnSavePicture);
+        btnShare = (Button) findViewById(R.id.btnShare);
         imgPhoto = (ImageView) findViewById(R.id.imgPhoto);
         redColorSeekBar = (SeekBar) findViewById(R.id.redColorSeekBar);
         greenColorSeekBar = (SeekBar) findViewById(R.id.greenColorSeekBar);
@@ -113,7 +118,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             } else {
 
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2000);
+                ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2000);
+
+            }
+
+        } else if (view.getId() == R.id.btnShare) {
+
+            try {
+
+                File myPictureFile = SaveFile.saveFile(MainActivity.this, bitmap);// we use the returned file from the SaveFile class
+                Uri myUri = Uri.fromFile(myPictureFile);
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);//need for share
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "This picture is sent from the Color App that I created myself.");//specify the subject and text.
+                shareIntent.putExtra(Intent.EXTRA_STREAM, myUri); // pass the file with uri
+                startActivity(Intent.createChooser(shareIntent,"Let's share your picture with others!"));
+
+            }
+            catch (Exception e) {
+
+                e.printStackTrace();
 
             }
 
