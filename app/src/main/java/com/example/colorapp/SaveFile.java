@@ -13,7 +13,7 @@ import java.util.Date;
 public class SaveFile {
 
     //method for save the image
-    public static File saveFile(Activity myActivity, Bitmap bitmap) throws IOException {
+    public static File saveFile(Activity myActivity, Bitmap bitmap) throws IOException {//that method return type is file
 
         //check weather it has media storage or not
         String externalStorageState = Environment.getExternalStorageState();
@@ -56,7 +56,7 @@ public class SaveFile {
 
                 } catch (Exception e) {
 
-                    throw  new IOException("The operation of saving the Image to External Storage wen wrong.");
+                    throw new IOException("The operation of saving the Image to External Storage wen wrong.");
                 }
 
             } else {
