@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnTakePicture.setOnClickListener(MainActivity.this);
         btnSavePicture.setOnClickListener(MainActivity.this);
+        btnShare.setOnClickListener(MainActivity.this);
 
         ColorizationHandler colorizationHandler = new ColorizationHandler();
 
